@@ -61,3 +61,90 @@ function decrement() {
 function stopClock() {
     clearInterval(intervalId);
 }
+
+// Fisher-Yates shuffle for randomizing order of multiple choice options
+
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+    return array;
+}
+
+// game start, reset, and restart functions
+
+$(document).on("click", "#start-game", function() {
+    if (categorySelect === true && difficultySelect === true) {
+        resetState = false;
+        $("#category1").addClass("unable");
+        $("#category2").addClass("unable");
+        $("#category3").addClass("unable");
+        $("#diff-easy").addClass("unable");
+        $("#diff-medium").addClass("unable");
+        $("#diff-hard").addClass("unable");
+        askQuestion();
+        startClock();
+        setTimeout(function() {
+            $("#start-game").attr("id", "reset-game").text("Reset Game");
+        }, 200);
+    } else if (categorySelect === false && difficultySelect === false) {
+        $("#text-box").text("First Choose a Category and Difficulty");
+    } else if (categorySelect === false && difficultySelect === true) {
+        $("#text-box").text("First Choose a Category");
+    } else if (categorySelect === true && difficultySelect === false) {
+        $("#text-box").text("First Choose a Difficulty");
+    } else {};
+}) 
+
+$(document).on("click", "#reset-game", function() {
+    gameReset();
+    resetState = true;
+    $("#game-trivia").hide();
+    $("#game-giphy").hide();
+    $("#giphy-home").hide();
+    $("#reset-game").attr("id", "restart-game").text("Restart Game");
+}) 
+
+$(document).on("click", "#restart-game", function() {
+    if (categorySelect === true && difficultySelect === true) {
+        $("#right-picks").text("0");
+        $("#wrong-picks").text("0");
+        $("#restart-game").attr("id", "reset-game").text("Reset Game");
+        resetState = false;
+        questionsAsked = 0;
+        $("#category1").addClass("unable");
+        $("#category2").addClass("unable");
+        $("#category3").addClass("unable");
+        $("#diff-easy").addClass("unable");
+        $("#diff-medium").addClass("unable");
+        $("#diff-hard").addClass("unable");
+        $("#game-results").hide();
+        askQuestion();
+        startClock();
+    } else if (categorySelect === false && difficultySelect === false) {
+        $("#text-box").text("First Choose a Category and Difficulty");
+    } else if (categorySelect === false && difficultySelect === true) {
+        $("#text-box").text("First Choose a Category");
+    } else if (categorySelect === true && difficultySelect === false) {
+        $("#text-box").text("First Choose a Difficulty");
+    } else {};
+}) 
+
+// category and difficulty toggle buttons
+
+$(document).on("click", "#category1", function() {
+    category = "27";
+    $(this).removeClass("btn-secondary").addClass("btn-dark active");
+    if ($("#category2").hasClass("btn-dark active")) {
+        $("#category2").removeClass("btn-dark active").addClass("btn-secondary");
+    }
+    if ($("#category3").hasClass("btn-dark active")) {
+        $("#category3").removeClass("btn-dark active").addClass("btn-secondary");
+    }
+    categorySelect = true;
+})
