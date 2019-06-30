@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather&display=swap">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700|Josefin+Sans&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+
+    <title>Celebrity Trivia Game</title>
+</head>
+
+<body>
+
+    <!-- <div class="jumbotron"> -->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-12 col-xs-12 col-md-12" id="heading">
+                <br>
+                <h1>Celebrity Trivia</h1>
+                <br>
+                <br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 col-xs-1 col-md-2" id="spacer">
+                <!-- left-spacer -->
+            </div>
+
+            <div class="col-sm-8 col-xs-10 col-md-8" id="main">
+                <!-- main content area -->
+                <div class="row">
+                    <!-- Score, Timer, Wrong -->
+                    <div class="col-sm-4 col-xs-4 col-md-4" id="right-score">
+                        <button class="btn btn-success btn-block">Correct: <span id="right-picks"> 0</span></button>
+                    </div>
+                    <div class="col-sm-4 col-xs-4 col-md-4" id="game-timer">
+                        <button class="btn btn-primary btn-block">Timer: <span id="clock"> </span></button>
+                    </div>
+                    <div class="col-sm-4 col-xs-4 col-md-4" id="wrong-score">
+                        <button class="btn btn-danger btn-block">Wrong: <span id="wrong-picks"> 0</span></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- game category and difficulty settings -->
+                    <div class="col-sm-12 col-xs-12 col-md-12" id="game-settings">
+                        <h5>Category</h5>
+                        <br>
+                        <div class="btn-group btn-group-toggle btn-block" id="categories" data-toggle="buttons">
+                            <label class="btn btn-secondary" id="category2">
+                                <input type="radio" name="options" autocomplete="off"> Celebrities
+                            </label>
+                        </div>
+                        <h5>Difficulty</h5>
+                        <br>
+                        <div class="btn-group btn-group-toggle btn-block" id="levels" data-toggle="buttons">
+                            <label class="btn btn-secondary" id="diff-easy">
+                                <input type="radio" name="options" autocomplete="off"> Easy
+                            </label>
+                            <label class="btn btn-secondary" id="diff-medium">
+                                <input type="radio" name="options" autocomplete="off"> Medium
+                            </label>
+                            <label class="btn btn-secondary" id="diff-hard">
+                                <input type="radio" name="options" autocomplete="off"> Hard
+                            </label>
+                        </div>
+                        <hr>
+                        <div style="text-align: center"><button class="btn btn-block" id="start-game">Start
+                                Game</button></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Score Board -->
+                    <div class="col-sm-12 col-xs-12 col-md-12" id="game-results">
+                        <h5 style="text-align: center">Game Results</h5>
+                        <button class="btn btn-outline-primary btn-block"><span id="response-time"> </span></button>
+                        <button class="btn btn-outline-primary btn-block"><span id="response-score"> </span></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Questions-->
+                    <div class="col-sm-12 col-xs-12 col-md-12" id="game-trivia">
+                        <div class="btn btn-block">
+                            <button class="btn btn-info btn-block"><span class="receptacle" id="questionDiv">
+                                </span></button>
+                            <button class="btn btn-outline-dark btn-block option"><span class="receptacle"
+                                    id="answerDiv1"> </span></button>
+                            <button class="btn btn-outline-dark btn-block option"><span class="receptacle"
+                                    id="answerDiv2"> </span></button>
+                            <button class="btn btn-outline-dark btn-block option"><span class="receptacle"
+                                    id="answerDiv3"> </span></button>
+                            <button class="btn btn-outline-dark btn-block option"><span class="receptacle"
+                                    id="answerDiv4"> </span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Ghiphy -->
+                    <div class="col-sm-12 col-xs-12 col-md-12" id="game-giphy">
+                        <button class="btn btn-block">
+                            <span id="giphy-home"> </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-xs-1 col-md-2" id="spacer">
+                <!-- rightspacer -->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-xs-12 col-md-12" id="footing">
+                <!-- footer row -->
+            </div>
+        </div>
+
+    </div>
+
+    <!--Javascript-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script rel="javascript" src="./assets/javascript/code.js"></script>
+</body>
+
+</html>
